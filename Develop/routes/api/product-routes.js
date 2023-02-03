@@ -59,9 +59,13 @@ Product.create(req.body)
     });
 return ProductTag.bulkCreate(productTagIdArr);
   }
+  res.status(200).json(product);
 })
-      // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      
+.then((productTagIds)=> res.status(200).json(productTagIds))
+.catch((err)=> {
+  console.log(err);
+  res.status(400).json(err);
+});   
 });
 
 // update product
